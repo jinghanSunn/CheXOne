@@ -1,0 +1,57 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>Abnormality grounding：大结构可用，小病灶不行</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>VinDr-CXR · 逐类 mIoU</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 16 }}>
+        <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '8px' }}>
+            <Chart
+                style={{ height: 546 }}
+                chartType='barChart'
+                barDirection='bar'
+                grouping='clustered'
+                title='逐类 mIoU（括号为查询数，论文整体 0.452）'
+                titleColor='#1A2230'
+                showLegend={false}
+                showDataLabels={true}
+                axisColor='#4A5568'
+                dataLabelColor='#1A2230'
+                colors={['#1E4FA8']}
+                background='#FFFFFF'
+                data={[
+                    ['类别', 'mIoU'],
+                    ['Calcification (194)', 0.08],
+                    ['Pleural thickening (169)', 0.105],
+                    ['Nodule/Mass (176)', 0.13],
+                    ['Atelectasis (86)', 0.137],
+                    ['Pulmonary fibrosis (217)', 0.154],
+                    ['Lung Opacity (84)', 0.157],
+                    ['Pleural effusion (111)', 0.231],
+                    ['Infiltration (58)', 0.263],
+                    ['ILD (221)', 0.281],
+                    ['Consolidation (96)', 0.3],
+                    ['Aortic enlargement (220)', 0.376],
+                    ['Cardiomegaly (309)', 0.577],
+                ]}
+            />
+        </Box>
+        <Box style={{ width: 430, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ background: '#E8EFF8', borderRadius: 8, padding: '14px 20px', flexDirection: 'column', gap: 2 }}>
+                <Text style={{ fontSize: 18, color: '#4A5568' }}>Cardiomegaly 单类 mIoU</Text>
+                <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#1E4FA8' }}>0.577</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>已超过论文整体 0.452；小病灶类在 0.08–0.16。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '12px 20px', flexDirection: 'column', gap: 6 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>判断</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>2108 个查询里钙化、结节、纤维化等小病灶占大头，整体被拉到 0.25；论文 743 个样本若偏大病灶，0.452 即说得通（无法验证）。</Text>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>一个已修正的坑</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>16 位 DICOM 读图溢出（100/949 张）：这批 0.164，其余 0.270；修复约 +0.01。</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>框中心回归斜率 x 0.61 / y 0.66。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>09 / 13</Text>
+    </Box>
+</Slide>

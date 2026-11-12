@@ -1,0 +1,56 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>① View classification：投照体位三分类</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>MIMIC-CXR test</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ width: 540, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '16px 22px', flexDirection: 'column', gap: 8 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>做什么</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>给一张胸片，判断投照体位：AP、PA 还是侧位（三选一）。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么做</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>MIMIC-CXR 官方 test 划分，AP / PA / 侧位（LATERAL + LL）各随机抽 300 张，共 900。</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>问句 “What is the view of this chest X-ray?”，选项按训练数据格式 Options:(A)(B)(C)，顺序随机打乱，从 \boxed 取字母。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>论文</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>900 个样本，Accuracy 0.9978，CI [0.978, 1.0]。</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 14 }}>
+            <Box style={{ height: 150, flexDirection: 'row', gap: 14 }}>
+                <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 8, padding: '12px 20px', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 18, color: '#4A5568' }}>我们 Accuracy [95% CI]</Text>
+                    <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#1E4FA8' }}>0.988</Text>
+                    <Text style={{ fontSize: 18, color: '#4A5568' }}>[0.980, 0.994]</Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '12px 20px', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 18, color: '#4A5568' }}>论文 Accuracy</Text>
+                    <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#4A5568' }}>0.998</Text>
+                    <Text style={{ fontSize: 18, color: '#4A5568' }}>[0.978, 1.0]</Text>
+                </Box>
+            </Box>
+            <Table
+                style={{ width: '100%', height: 190 }}
+                defaultTextStyle={{ fontSize: 20, textAlign: 'center', color: '#1A2230' }}
+                defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+                cells={[
+                    [
+                        { text: '真实 \\ 预测', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'AP', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'PA', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: '侧位', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: '召回', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    ],
+                    [{ text: 'AP', textStyle: { bold: true } }, { text: '295', textStyle: { bold: true, color: '#1E4FA8' } }, { text: '5', textStyle: { color: '#D9534F' } }, '0', '0.983'],
+                    [{ text: 'PA', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '3', textStyle: { color: '#D9534F' }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '294', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '3', textStyle: { color: '#D9534F' }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '0.980', cellStyle: { background: { color: '#F0F5FC' } } }],
+                    [{ text: '侧位', textStyle: { bold: true } }, '0', '0', { text: '300', textStyle: { bold: true, color: '#1E4FA8' } }, '1.000'],
+                ]}
+            />
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '12px 20px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>复现：与论文置信区间重叠</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>900 张错 11 张，其中 8 张是 AP 与 PA 互判（本来肉眼差别小），3 张 PA 判成侧位；侧位 300/300 全对，无法解析 0%。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>04 / 13</Text>
+    </Box>
+</Slide>

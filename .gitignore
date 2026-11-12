@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行缓存与日志
+cache_chexone/
+logs/
+*.log
+
+# Office 临时锁文件
+~$*
+
+# 本地环境与密钥
+.env
+.env.*

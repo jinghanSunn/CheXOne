@@ -1,0 +1,40 @@
+{
+  "config": "runner=official pixels=rec max_new_tokens=2048 prompt=mc_reason_paren lateral=['LATERAL', 'LL'] n=900",
+  "n": 900,
+  "acc": 0.9877777777777778,
+  "ci95": [
+    0.98,
+    0.9944444444444445
+  ],
+  "per_class_recall": {
+    "AP": 0.9833333333333333,
+    "PA": 0.98,
+    "Lateral": 1.0
+  },
+  "confusion": {
+    "AP": {
+      "PA": 5,
+      "AP": 295
+    },
+    "PA": {
+      "PA": 294,
+      "AP": 3,
+      "Lateral": 3
+    },
+    "Lateral": {
+      "Lateral": 300
+    }
+  },
+  "parsed_as": {
+    "boxed_letter": 900
+  },
+  "unparsed": 0.0,
+  "paper": {
+    "acc": 0.9978,
+    "ci": [
+      0.978,
+      1.0
+    ],
+    "n": 900
+  }
+}

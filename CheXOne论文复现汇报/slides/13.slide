@@ -1,0 +1,64 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>结论与下一步</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>CheXOne 定位不可迁移 → 换 baseline</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 22px', flexDirection: 'column', gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>结论</Text>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
+                    <Box style={{ width: 32, height: 32, background: '#1E4FA8', borderRadius: 6, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>1</Text>
+                    </Box>
+                    <Text style={{ flex: 1, fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>评测链路正确：View 0.988（论文 0.998）、Findings BLEU-2 0.204（论文 0.215）复现。</Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
+                    <Box style={{ width: 32, height: 32, background: '#1E4FA8', borderRadius: 6, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>2</Text>
+                    </Box>
+                    <Text style={{ flex: 1, fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>定位只在大结构上接近论文（Cardiomegaly 0.60 / 0.58），小病灶 0.08–0.16。</Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
+                    <Box style={{ width: 32, height: 32, background: '#1E4FA8', borderRadius: 6, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>3</Text>
+                    </Box>
+                    <Text style={{ flex: 1, fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>Long-tail 0.757 低于论文 0.816，主动脉两类特异度偏低，疑为阴性样本含标签噪声。</Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
+                    <Box style={{ width: 32, height: 32, background: '#D9534F', borderRadius: 6, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>4</Text>
+                    </Box>
+                    <Text style={{ flex: 1, fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>迁移到 Track 8 后框不再跟着病灶走（k≈0.4），CheXOne 不能直接当定位 baseline。</Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 190, background: '#E8EFF8', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '12px 22px', flexDirection: 'column', gap: 6 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>新目标</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>找一个在大规模胸片（百万级）上预训练的模型作 baseline，解决两件事：</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>① 框落不到病灶上　② 报告里的位置描述与图像不符</Text>
+            </Box>
+        </Box>
+        <Box style={{ width: 520, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 22px', flexDirection: 'column', gap: 9 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>下一步</Text>
+            <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.4 }}>
+                <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>1. 等作者回复 issue：</span>索取 VinDr 743 / MS-CXR 127 样本清单，到位后重算对标。
+            </Text>
+            <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.4 }}>
+                <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>2. 试 MAIRA-2：</span>微软 7B 模型；编码器 RAD-DINO-MAIRA-2 在 1.40M 张胸片上自监督；原生支持 grounded report 与 phrase grounding。
+            </Text>
+            <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.4 }}>
+                <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>3. 同口径评测：</span>沿用框中心回归斜率 k 与 mIoU，先 20 张再全量，直接与 CheXOne 的 0.37 / 0.44 对比。
+            </Text>
+            <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.4 }}>
+                <span style={{ fontWeight: 'bold', color: '#D9534F' }}>4. 先核风险：</span>训练数据来自美、西两国；带框监督远少于百万级；仅限研究许可。
+            </Text>
+            <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.4 }}>
+                <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>5. 挂起项：</span>Long-tail 干净阴性池、BertScore 换 distilroberta、int16 溢出。
+            </Text>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>13 / 13</Text>
+    </Box>
+</Slide>

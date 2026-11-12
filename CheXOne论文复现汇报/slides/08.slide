@@ -1,0 +1,48 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>④ Abnormality grounding：给异常名，框出病灶</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>VinDr-CXR test</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ width: 560, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 22px', flexDirection: 'column', gap: 6 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>做什么</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>给一张胸片和异常名（如 aortic enlargement），框出该异常的区域。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么做</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>VinDr-CXR 官方 test（3000 张，5 位医生共识标注），有框的 949 张；每个（图像, 类别）问一次，共 2108 个查询、21 类。</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>DICOM 转 PNG 并缩到短边 512；问句与上页同模板，异常名小写；只问图中确实有的类；取第一个框与同类 GT 中 IoU 最大者计分。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>论文</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>743 个样本，mIoU 0.452 [0.407, 0.513]，mAP 0.471。样本清单未公开：我们试过的各种构造（单框、14 类等）都凑不出 743。</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', gap: 24, background: '#E8EFF8', borderRadius: 8, padding: '0px 22px' }}>
+                <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#D9534F' }}>0.250</Text>
+                <Text style={{ fontSize: 22, color: '#1A2230' }}>[0.239, 0.260]　vs 论文 0.452　→ 低于论文 CI</Text>
+            </Box>
+            <Table
+                style={{ width: '100%', height: 232 }}
+                defaultTextStyle={{ fontSize: 20, textAlign: 'center', color: '#1A2230' }}
+                defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+                cells={[
+                    [
+                        { text: '子集', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'n', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'mIoU', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'IoU≥0.5', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    ],
+                    [{ text: '全部 21 类', textStyle: { bold: true } }, '2108', { text: '0.250', textStyle: { bold: true, color: '#1E4FA8' } }, '18.8%'],
+                    [{ text: 'Kaggle 14 类', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '2053', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '0.252', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '19.2%', cellStyle: { background: { color: '#F0F5FC' } } }],
+                    [{ text: '14 类去 Other lesion', textStyle: { bold: true } }, '1959', '0.261', '20.2%'],
+                    [{ text: '仅单个 GT 框', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '1675', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '0.257', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '20.4%', cellStyle: { background: { color: '#F0F5FC' } } }],
+                ]}
+            />
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>换类别集合、换成单框，分数都只动 0.01</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>没出框 0%、解析 100% 命中；自有 runner 0.246 与官方 runner 0.250 一致，所以差距不在代码和 prompt 变体。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>08 / 13</Text>
+    </Box>
+</Slide>

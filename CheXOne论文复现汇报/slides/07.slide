@@ -1,0 +1,73 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>Phrase grounding：越大的病灶越准</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>MS-CXR · 逐类与按 GT 面积分档</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'column', gap: 12 }}>
+        <Box style={{ height: 372, flexDirection: 'row', gap: 16 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '8px' }}>
+                <Chart
+                    style={{ height: 354 }}
+                    chartType='barChart'
+                    barDirection='bar'
+                    grouping='clustered'
+                    title='逐类 mIoU（括号为查询数）'
+                    titleColor='#1A2230'
+                    showLegend={false}
+                    showDataLabels={true}
+                    axisColor='#4A5568'
+                    dataLabelColor='#1A2230'
+                    colors={['#1E4FA8']}
+                    background='#FFFFFF'
+                    data={[
+                        ['类别', 'mIoU'],
+                        ['Lung Opacity (12)', 0.252],
+                        ['Edema (8)', 0.286],
+                        ['Pleural Effusion (14)', 0.317],
+                        ['Pneumothorax (36)', 0.332],
+                        ['Pneumonia (30)', 0.402],
+                        ['Atelectasis (8)', 0.403],
+                        ['Consolidation (15)', 0.427],
+                        ['Cardiomegaly (53)', 0.601],
+                    ]}
+                />
+            </Box>
+            <Box style={{ width: 470, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '8px' }}>
+                <Chart
+                    style={{ height: 354 }}
+                    chartType='barChart'
+                    grouping='clustered'
+                    title='按 GT 面积四分位：mIoU'
+                    titleColor='#1A2230'
+                    showLegend={false}
+                    showDataLabels={true}
+                    axisColor='#4A5568'
+                    dataLabelColor='#1A2230'
+                    colors={['#3D7BD9']}
+                    background='#FFFFFF'
+                    data={[
+                        ['面积分位', 'mIoU'],
+                        ['Q1 最小', 0.285],
+                        ['Q2', 0.365],
+                        ['Q3', 0.478],
+                        ['Q4 最大', 0.582],
+                    ]}
+                />
+            </Box>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>Cardiomegaly 0.601 ≈ 论文 0.608</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>大结构上与论文持平；框中心回归斜率 x 0.92 / y 0.78，框确实跟着病灶走。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #3D7BD9', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>差距在框的边界，不在位置</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>IoU≥0.3 达 71%，但 ≥0.5 只有 35%，≥0.7 仅 11%：位置大致对，框不够紧。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>07 / 13</Text>
+    </Box>
+</Slide>

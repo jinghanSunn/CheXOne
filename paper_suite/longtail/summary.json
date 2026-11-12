@@ -1,0 +1,74 @@
+{
+  "config": "runner=official pixels=rec max_new_tokens=2048 prompt=mc_reason views=study pos_frac=0.5 neg_pool=random shuffle_options=True n=750",
+  "overall": {
+    "n": 750,
+    "acc": 0.7573333333333333,
+    "sens": 0.8053333333333333,
+    "spec": 0.7093333333333334,
+    "pred_yes_rate": 0.548,
+    "unparsed": 0.0,
+    "n_pos": 375
+  },
+  "ci95": [
+    0.728,
+    0.7893333333333333
+  ],
+  "per_disease": {
+    "Pneumoperitoneum": {
+      "n": 150,
+      "acc": 0.7733333333333333,
+      "sens": 0.6,
+      "spec": 0.9466666666666667,
+      "pred_yes_rate": 0.32666666666666666,
+      "unparsed": 0.0,
+      "n_pos": 75
+    },
+    "Pneumomediastinum": {
+      "n": 150,
+      "acc": 0.7066666666666667,
+      "sens": 0.5866666666666667,
+      "spec": 0.8266666666666667,
+      "pred_yes_rate": 0.38,
+      "unparsed": 0.0,
+      "n_pos": 75
+    },
+    "Subcutaneous Emphysema": {
+      "n": 150,
+      "acc": 0.88,
+      "sens": 0.9866666666666667,
+      "spec": 0.7733333333333333,
+      "pred_yes_rate": 0.6066666666666667,
+      "unparsed": 0.0,
+      "n_pos": 75
+    },
+    "Tortuous Aorta": {
+      "n": 150,
+      "acc": 0.74,
+      "sens": 0.8666666666666667,
+      "spec": 0.6133333333333333,
+      "pred_yes_rate": 0.6266666666666667,
+      "unparsed": 0.0,
+      "n_pos": 75
+    },
+    "Calcification of the Aorta": {
+      "n": 150,
+      "acc": 0.6866666666666666,
+      "sens": 0.9866666666666667,
+      "spec": 0.38666666666666666,
+      "pred_yes_rate": 0.8,
+      "unparsed": 0.0,
+      "n_pos": 75
+    }
+  },
+  "paper": {
+    "acc": 0.816,
+    "ci": [
+      0.791,
+      0.842
+    ],
+    "n": 750
+  },
+  "parsed_as": {
+    "boxed_letter": 750
+  }
+}

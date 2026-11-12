@@ -1,0 +1,29 @@
+<Slide style={{ width: 1280, height: 720, background: '#0E3F8C', flexDirection: 'column' }}>
+    <Box style={{ height: 14, background: '#3D7BD9' }} />
+    <Box style={{ flex: 1, flexDirection: 'row', padding: '0px 70px' }}>
+        <Box style={{ width: 760, flexDirection: 'column', justifyContent: 'center', gap: 22 }}>
+            <Box style={{ flexDirection: 'row' }}>
+                <Box style={{ background: '#E8EFF8', borderRadius: 20, padding: '6px 20px' }}>
+                    <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>实验汇报 · Reproduction Report</Text>
+                </Box>
+            </Box>
+            <Text style={{ fontSize: 68, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.2 }}>CheXOne 论文复现实验</Text>
+            <Text style={{ fontSize: 26, color: '#C9D8F0', lineHeight: 1.5 }}>View 分类 · Long-tail 诊断 · Phrase / Abnormality Grounding · Findings 生成</Text>
+            <Text style={{ fontSize: 22, color: '#9FB6DC', lineHeight: 1.5 }}>Reproducing CheXOne, a Reasoning-Enhanced Chest X-ray VLM, on MIMIC-CXR, CXR-LT, MS-CXR and VinDr-CXR</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end', gap: 18 }}>
+            <Box style={{ width: 330, background: '#1E4FA8', borderRadius: 10, padding: '18px 24px', flexDirection: 'column', gap: 4 }}>
+                <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#FFFFFF' }}>5</Text>
+                <Text style={{ fontSize: 22, color: '#C9D8F0' }}>个任务，对照论文逐项复现</Text>
+            </Box>
+            <Box style={{ width: 330, background: '#1E4FA8', borderRadius: 10, padding: '18px 24px', flexDirection: 'column', gap: 4 }}>
+                <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#FFFFFF' }}>2</Text>
+                <Text style={{ fontSize: 22, color: '#C9D8F0' }}>项已复现，3 项低于论文</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 70, background: '#0A2F6B', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 70px' }}>
+        <Text style={{ fontSize: 20, color: '#C9D8F0' }}>汇报人：Mirror · 厦门大学 · 生物医学 AI</Text>
+        <Text style={{ fontSize: 20, color: '#C9D8F0' }}>2026 年 11 月</Text>
+    </Box>
+</Slide>

@@ -1,0 +1,52 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>③ Phrase grounding：按一句话框出区域</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>MS-CXR test</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ width: 560, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 20px', flexDirection: 'column', gap: 4 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>做什么</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>给胸片和一句自由短语（如 “small right apical pneumothorax”），框出对应区域。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么做</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>test 216 个框 → 176 个（图像, 短语）查询；坐标 0-100，取第一个框算 IoU，没出框记 0。</Text>
+            <Box style={{ background: '#F0F5FC', borderRadius: 6, padding: '10px 14px', flexDirection: 'column' }}>
+                <Text style={{ fontSize: 17, color: '#1A2230', lineHeight: 1.4 }}>{"Detect {phrase} in the given image.\nOutput format:\n<|ref|>target name<|/ref|><|box|>(x1,y1),(x2,y2)<|/box|>\nExample: <|ref|>pneumothorax<|/ref|><|box|>(12,60),(18,87)<|/box|>\nPlease reason step by step, and put your final answer within \\boxed{}."}</Text>
+            </Box>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>论文</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>127 个样本，mIoU 0.608，mAP 0.835；样本与指令原文未公开，对不上我们的 176。</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', gap: 24, background: '#E8EFF8', borderRadius: 8, padding: '0px 22px' }}>
+                <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#D9534F' }}>0.427</Text>
+                <Text style={{ fontSize: 22, color: '#1A2230' }}>[0.401, 0.454]　vs 论文 0.608　→ 低，但比 instruct 翻倍</Text>
+            </Box>
+            <Chart
+                style={{ height: 270 }}
+                chartType='barChart'
+                grouping='clustered'
+                title='mIoU：问法对结果的影响'
+                titleColor='#1A2230'
+                showLegend={false}
+                showDataLabels={true}
+                axisColor='#4A5568'
+                dataLabelColor='#1A2230'
+                colors={['#1E4FA8']}
+                background='#FFFFFF'
+                data={[
+                    ['设置', 'mIoU'],
+                    ['instruct（无框 45%）', 0.214],
+                    ['reasoning（无框 0%）', 0.427],
+                    ['论文', 0.608],
+                ]}
+            />
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>提升全部来自“不再漏框”</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>instruct 下 80/176 条根本没出框，记 0；换成 reasoning 后全部出框。两次都出框的子集 mIoU 0.392 → 0.407，定位本身几乎没变。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>06 / 13</Text>
+    </Box>
+</Slide>

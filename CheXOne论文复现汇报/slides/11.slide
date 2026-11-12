@@ -1,0 +1,58 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>为什么 grounding 低于论文：逐项量化</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>VinDr 0.250 vs 0.452 · MS-CXR 0.427 vs 0.608</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'column', gap: 12 }}>
+        <Table
+            style={{ width: '100%', height: 400 }}
+            defaultTextStyle={{ fontSize: 19, textAlign: 'center', color: '#1A2230' }}
+            defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+            cells={[
+                [
+                    { text: '可能原因', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '证据', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '影响', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                ],
+                [
+                    { text: '样本构成 / 病灶大小', textStyle: { bold: true } },
+                    { text: 'Cardiomegaly 0.577、Aortic enlargement 0.376，钙化 0.080；VinDr 早期运行中 GT 面积最大 1/4 达 0.467', textStyle: { textAlign: 'left' } },
+                    { text: '最大', textStyle: { bold: true, color: '#D9534F' } },
+                ],
+                [
+                    { text: '问法 / 推理模式', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: 'MS-CXR 的 instruct 模式 45% 无框；改 reasoning 后 0%，mIoU 0.214 → 0.427', textStyle: { textAlign: 'left' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '很大（已消除）', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                ],
+                [
+                    { text: 'runner / prompt 变体', textStyle: { bold: true } },
+                    { text: 'VinDr 自有 runner 0.246 vs 官方 runner 0.250', textStyle: { textAlign: 'left' } },
+                    { text: '≈ 0', textStyle: { bold: true, color: '#1E4FA8' } },
+                ],
+                [
+                    { text: '16 位 DICOM 读图溢出', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '100/949 张被读坏，这批 0.164，其余 0.270', textStyle: { textAlign: 'left' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '约 +0.01', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                ],
+                [
+                    { text: '多 GT 框 / 类别集合', textStyle: { bold: true } },
+                    { text: '单 GT 0.257 vs 全部 0.250；14 类去 Other lesion 0.261', textStyle: { textAlign: 'left' } },
+                    { text: '很小', textStyle: { bold: true, color: '#1E4FA8' } },
+                ],
+                [
+                    { text: '图像尺寸', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '两边最终都以约 448×560 进模型', textStyle: { textAlign: 'left' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '很小', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                ],
+            ]}
+        />
+        <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 22px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>剩下的差距主要是“测的是哪批样本”</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>论文的 743 / 127 个样本清单未公开；要精确复现只能向作者要（issue 已起草）。在此之前汇报写法：全量 0.25，大病灶 0.49，样本构成未公开。</Text>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>11 / 13</Text>
+    </Box>
+</Slide>

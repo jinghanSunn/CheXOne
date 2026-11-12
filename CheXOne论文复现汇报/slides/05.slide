@@ -1,0 +1,53 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>② Long-tail：5 种罕见病“有 / 无”二选一</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>CXR-LT（MIMIC-CXR-LT）test</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ width: 460, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '16px 22px', flexDirection: 'column', gap: 8 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>做什么</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>判断图中是否有：气腹、纵隔积气、皮下气肿、主动脉迂曲、主动脉钙化。这些病不在 CheXOne 的训练源里。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么做</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>每病 150 个 = 75 阳 + 75 阴，共 750；同一 study 的视图一起输入（最多 3 张）。</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>问句 “Is there … in the given chest X-ray?”，选项 A. No / B. Yes 顺序随机，取 \boxed 字母。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>论文</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>750 个，Accuracy 0.816，CI [0.791, 0.842]。正负比例、阴性怎么挑未公开，我们按 1:1、阴性随机。</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', gap: 24, background: '#E8EFF8', borderRadius: 8, padding: '0px 22px' }}>
+                <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#D9534F' }}>0.757</Text>
+                <Text style={{ fontSize: 22, color: '#1A2230' }}>[0.728, 0.789]　vs 论文 0.816 [0.791, 0.842]　→ 低于论文 CI</Text>
+            </Box>
+            <Chart
+                style={{ height: 290 }}
+                chartType='barChart'
+                grouping='clustered'
+                title='逐病：准确率 / 灵敏度 / 特异度'
+                titleColor='#1A2230'
+                showLegend={true}
+                showDataLabels={true}
+                legendColor='#4A5568'
+                axisColor='#4A5568'
+                dataLabelColor='#1A2230'
+                colors={['#1E4FA8', '#3D7BD9', '#FFC107']}
+                background='#FFFFFF'
+                data={[
+                    ['病', '准确率', '灵敏度', '特异度'],
+                    ['气腹', 0.77, 0.6, 0.95],
+                    ['纵隔积气', 0.71, 0.59, 0.83],
+                    ['皮下气肿', 0.88, 0.99, 0.77],
+                    ['主动脉迂曲', 0.74, 0.87, 0.61],
+                    ['主动脉钙化', 0.69, 0.99, 0.39],
+                ]}
+            />
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>差距集中在两处</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>主动脉两类特异度仅 0.39 / 0.61：阴性被大量判成“有”。CXR-LT 标签由报告抽取，“没写”不等于“没有”（推测，nofinding 阴性池对照待跑）。气腹、纵隔积气灵敏度只有 0.60 / 0.59，是漏诊。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>05 / 13</Text>
+    </Box>
+</Slide>

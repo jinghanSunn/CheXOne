@@ -1,0 +1,53 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>迁移到 Track 8：框不再跟着病灶走</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>框中心回归 pred = k · gt + b</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '8px' }}>
+                <Chart
+                    style={{ height: 410 }}
+                    chartType='barChart'
+                    grouping='clustered'
+                    title='回归斜率 k（越接近 1，框越跟着病灶走）'
+                    titleColor='#1A2230'
+                    showLegend={true}
+                    showDataLabels={true}
+                    legendColor='#4A5568'
+                    axisColor='#4A5568'
+                    dataLabelColor='#1A2230'
+                    colors={['#1E4FA8', '#3D7BD9']}
+                    background='#FFFFFF'
+                    data={[
+                        ['数据', 'x 方向', 'y 方向'],
+                        ['Track 8（国内 DR，17 类）', 0.37, 0.44],
+                        ['VinDr-CXR test', 0.61, 0.66],
+                        ['MS-CXR test', 0.92, 0.78],
+                    ]}
+                />
+            </Box>
+            <Box style={{ height: 112, background: '#E8EFF8', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '8px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>离训练分布越远，框越缩向一个固定点</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>MS-CXR 与 MIMIC 同源，k 最高；Track 8 的 k 只有 0.4 左右。</Text>
+            </Box>
+        </Box>
+        <Box style={{ width: 440, flexDirection: 'column', gap: 12 }}>
+            <Box style={{ background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 20px', flexDirection: 'column', gap: 6 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Track 8 上看到的</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>38 个配对框：中位 IoU 为 0，只有 26% 的框 IoU≥0.3、8% ≥0.5。</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>解码已用三种方式反事实检验，现有解码最好，问题在模型自身的定位。</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>未出现的类也会被画框（P(yes) 闸门放行），位置退回图像左上先验。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #3D7BD9', padding: '14px 20px', flexDirection: 'column', gap: 6 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>可能的原因（推测）</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>训练的定位奖励只在“病灶存在”时算 IoU；RL 阶段冻结视觉编码器，换成国内 DR 影像后视觉特征未适配。</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>注：Track 8 数据为早期 20 张试跑设置。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>12 / 13</Text>
+    </Box>
+</Slide>

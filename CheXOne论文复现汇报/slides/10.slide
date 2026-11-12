@@ -1,0 +1,46 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>⑤ Findings generation：给整个 study 写 findings</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>MIMIC-CXR test · 2347 个 study</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'row', gap: 18 }}>
+        <Box style={{ width: 500, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '12px 20px', flexDirection: 'column', gap: 5 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>做什么</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>读一个 study 的全部视图（1–5 张），写出 findings 段落。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么做</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>测试集 = ReXRank 公开的 MIMIC-CXR test，2347 个 study，与 annotation.json 的 test 完全一致。</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>问句用 README 的示例句 “Write an example findings section for the CXR.” + reasoning 后缀，取 \boxed 内文本作报告。</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>指标本地离线实现；BLEU / ROUGE-L 与 nltk、rouge_score 对照误差为 0。</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>论文</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>正文没有 MIMIC findings 数字；参考值取自 ReXRank 排行榜 CheXOne-R1 行。</Text>
+        </Box>
+        <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+            <Table
+                style={{ width: '100%', height: 318 }}
+                defaultTextStyle={{ fontSize: 20, textAlign: 'center', color: '#1A2230' }}
+                defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+                cells={[
+                    [
+                        { text: '指标', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: '我们', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: 'ReXRank', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                        { text: '可比性', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    ],
+                    [{ text: 'BLEU（逐报告 BLEU-2）', textStyle: { bold: true } }, { text: '0.204', textStyle: { bold: true, color: '#1E4FA8' } }, '0.215', { text: '可比：差 0.011', textStyle: { color: '#1E4FA8', bold: true } }],
+                    [{ text: 'BertScore', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '0.576', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '0.441', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '不可比：distilbert vs distilroberta', textStyle: { color: '#D9534F', bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }],
+                    [{ text: 'ROUGE-L', textStyle: { bold: true } }, '0.285', '—', '参考'],
+                    [{ text: '1/RadCliQ · SembScore', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } }, { text: '未算', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '1.023 · 0.456', cellStyle: { background: { color: '#F0F5FC' } } }, { text: '需专用模型', cellStyle: { background: { color: '#F0F5FC' } } }],
+                    [{ text: 'RadGraph · RaTE · GREEN', textStyle: { bold: true } }, '未算', '0.234 · 0.519 · 0.314', '需专用模型'],
+                ]}
+            />
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, borderLeft: '6px solid #1E4FA8', padding: '10px 20px', flexDirection: 'column', justifyContent: 'center', gap: 2 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>BLEU 对上了，生成链路正确</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>2347 个全部给出答案（2330 个完整 \boxed，17 个未闭合仍取到内容）。报告偏短：中位 42 词 vs 参考 56 词。1.1% 的报告句子重复，去重后 BLEU 仅 0.2042 → 0.2051。多视图 study 略高：单图 0.196，两图 0.211。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>10 / 13</Text>
+    </Box>
+</Slide>

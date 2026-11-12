@@ -1,0 +1,239 @@
+{
+  "AccessionNumber": "JSDR202009110764",
+  "IsNotHumanBodyProb": 0.0,
+  "IsStitchedProb": 0.0,
+  "ProcessingTime_ms": 1,
+  "Prediction": {
+    "ImageSize": {
+      "width_px": 2544,
+      "height_px": 3056,
+      "pixel_spacing_mm": [
+        0.139,
+        0.139
+      ]
+    },
+    "Detections": [
+      {
+        "LesionID": "DET_001",
+        "BBox_mm": [
+          9.19,
+          14.44,
+          10.61,
+          16.14
+        ],
+        "Finding": "Calcification",
+        "Confidence": 0.9924,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.01,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.01,
+          "PleuralThickening": 0.01,
+          "Calcification": 0.9924,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.01,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.01,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.8,
+          "right": 0.1,
+          "bilateral": 0.1
+        }
+      },
+      {
+        "LesionID": "DET_002",
+        "BBox_mm": [
+          12.38,
+          5.95,
+          16.97,
+          12.32
+        ],
+        "Finding": "PleuralThickening",
+        "Confidence": 0.9627,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.01,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.01,
+          "PleuralThickening": 0.9627,
+          "Calcification": 0.01,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.01,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.01,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.8,
+          "right": 0.1,
+          "bilateral": 0.1
+        }
+      },
+      {
+        "LesionID": "DET_003",
+        "BBox_mm": [
+          159.13,
+          11.04,
+          225.61,
+          17.84
+        ],
+        "Finding": "MediastinalWidening",
+        "Confidence": 0.9399,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.01,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.01,
+          "PleuralThickening": 0.01,
+          "Calcification": 0.01,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.01,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.9399,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.2,
+          "right": 0.2,
+          "bilateral": 0.6
+        }
+      },
+      {
+        "LesionID": "DET_004",
+        "BBox_mm": [
+          10.61,
+          11.04,
+          15.91,
+          16.99
+        ],
+        "Finding": "Bronchiectasis",
+        "Confidence": 0.852,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.01,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.01,
+          "PleuralThickening": 0.01,
+          "Calcification": 0.01,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.852,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.01,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.8,
+          "right": 0.1,
+          "bilateral": 0.1
+        }
+      },
+      {
+        "LesionID": "DET_005",
+        "BBox_mm": [
+          12.02,
+          7.65,
+          15.91,
+          12.74
+        ],
+        "Finding": "Fibrosis",
+        "Confidence": 0.6515,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.6515,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.01,
+          "PleuralThickening": 0.01,
+          "Calcification": 0.01,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.01,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.01,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.8,
+          "right": 0.1,
+          "bilateral": 0.1
+        }
+      },
+      {
+        "LesionID": "DET_006",
+        "BBox_mm": [
+          10.61,
+          7.65,
+          15.91,
+          15.29
+        ],
+        "Finding": "Emphysema",
+        "Confidence": 0.5314,
+        "Finding_probabilities": {
+          "Consolidation": 0.01,
+          "Fibrosis": 0.01,
+          "Nodule": 0.01,
+          "Cardiomegaly": 0.01,
+          "PleuralEffusion": 0.01,
+          "Emphysema": 0.5314,
+          "PleuralThickening": 0.01,
+          "Calcification": 0.01,
+          "Infiltration": 0.01,
+          "Mass": 0.01,
+          "Pneumothorax": 0.01,
+          "Bronchiectasis": 0.01,
+          "Atelectasis": 0.01,
+          "Edema": 0.01,
+          "Cavity": 0.01,
+          "MediastinalWidening": 0.01,
+          "AirBronchogram": 0.01
+        },
+        "Laterality_probabilities": {
+          "left": 0.8,
+          "right": 0.1,
+          "bilateral": 0.1
+        }
+      }
+    ],
+    "Interpretation": {
+      "Conclusion": "共检出6个病灶：Calcification、PleuralThickening、MediastinalWidening、Bronchiectasis、Fibrosis、Emphysema。",
+      "KeyFindings": [
+        "Calcification",
+        "PleuralThickening",
+        "MediastinalWidening",
+        "Bronchiectasis",
+        "Fibrosis",
+        "Emphysema"
+      ]
+    }
+  }
+}

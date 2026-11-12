@@ -1,0 +1,135 @@
+[
+  {
+    "task": "View classification",
+    "data": "MIMIC-CXR test",
+    "metric": "Accuracy",
+    "ours": 0.9877777777777778,
+    "paper": 0.9978,
+    "paper_ci": [
+      0.978,
+      1.0
+    ],
+    "n": 900,
+    "paper_n": 900,
+    "note": "unparsed 0.0%; recall {'AP': 0.9833333333333333, 'PA': 0.98, 'Lateral': 1.0}"
+  },
+  {
+    "task": "Long-tail disease",
+    "data": "CXR-LT (MIMIC) test",
+    "metric": "Accuracy",
+    "ours": 0.7573333333333333,
+    "paper": 0.816,
+    "paper_ci": [
+      0.791,
+      0.842
+    ],
+    "n": 750,
+    "paper_n": 750,
+    "note": "sens 0.805 spec 0.709 pred_yes 0.55; 75 pos + 75 neg per disease (paper ratio unknown)"
+  },
+  {
+    "task": "Phrase grounding",
+    "data": "MS-CXR test",
+    "metric": "mIoU (per query)",
+    "ours": 0.4274785823519677,
+    "paper": 0.608,
+    "paper_ci": [
+      0.561,
+      0.66
+    ],
+    "n": 176,
+    "paper_n": 127,
+    "note": "per-class macro 0.378; single-box 0.448; no box 0.0%; Hit@0.5 0.347; regression k x 0.92 y 0.78"
+  },
+  {
+    "task": "Abnormality grounding",
+    "data": "VinDr-CXR test",
+    "metric": "mIoU (per query)",
+    "ours": 0.2497943635185133,
+    "paper": 0.452,
+    "paper_ci": [
+      0.407,
+      0.513
+    ],
+    "n": 2108,
+    "paper_n": 743,
+    "note": "per-class macro 0.200; single-box 0.257; no box 0.0%; Hit@0.5 0.188; regression k x 0.61 y 0.66"
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "1/RadCliQ-v1",
+    "ours": null,
+    "paper": 1.023,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": "extracted as {'boxed_unclosed': 17, 'boxed': 2330}"
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "BLEU",
+    "ours": 0.2041774693474135,
+    "paper": 0.215,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "BertScore",
+    "ours": 0.5756280270846589,
+    "paper": 0.441,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "SembScore",
+    "ours": null,
+    "paper": 0.456,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "RadGraph",
+    "ours": null,
+    "paper": 0.234,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "RaTEScore",
+    "ours": null,
+    "paper": 0.519,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  },
+  {
+    "task": "Findings generation",
+    "data": "MIMIC-CXR test (ReXRank)",
+    "metric": "GREEN",
+    "ours": null,
+    "paper": 0.314,
+    "paper_ci": null,
+    "n": 2347,
+    "paper_n": 2347,
+    "note": ""
+  }
+]

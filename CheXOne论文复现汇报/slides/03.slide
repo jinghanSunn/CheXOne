@@ -1,0 +1,64 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>统一评测设置：官方代码，只换 prompt</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>5 个任务共用</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'column', gap: 14 }}>
+        <Box style={{ height: 132, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <Box style={{ flex: 1, height: 128, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 14px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>① 数据</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>MIMIC-CXR / CXR-LT / MS-CXR / VinDr 官方 test</Text>
+            </Box>
+            <Text style={{ fontSize: 30, color: '#3D7BD9', fontWeight: 'bold' }}>→</Text>
+            <Box style={{ flex: 1, height: 128, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 14px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>② 预处理</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>JPG 直读；VinDr 的 DICOM 转 PNG 并缩到短边 512</Text>
+            </Box>
+            <Text style={{ fontSize: 30, color: '#3D7BD9', fontWeight: 'bold' }}>→</Text>
+            <Box style={{ flex: 1, height: 128, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 14px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>③ 官方推理</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>README Quick Start 原样，reasoning 模式</Text>
+            </Box>
+            <Text style={{ fontSize: 30, color: '#3D7BD9', fontWeight: 'bold' }}>→</Text>
+            <Box style={{ flex: 1, height: 128, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 14px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>④ 解析</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>取 \boxed 里的字母 / 框 / 报告文本</Text>
+            </Box>
+            <Text style={{ fontSize: 30, color: '#3D7BD9', fontWeight: 'bold' }}>→</Text>
+            <Box style={{ flex: 1, height: 128, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '10px 14px', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>⑤ 指标</Text>
+                <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>Acc / mIoU / BLEU，附 95% CI</Text>
+            </Box>
+        </Box>
+        <Box style={{ height: 398, flexDirection: 'row', gap: 16 }}>
+            <Box style={{ width: 720, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '16px 22px', flexDirection: 'column', gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>推理设置</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>模型：</span>StanfordAIMI/CheXOne（Qwen2.5-VL-3B 后训练），只推理
+                </Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>模式：</span>reasoning，末尾追加 “Please reason step by step … \boxed{}.”
+                </Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>像素：</span>max_pixels = 512×512（同训练），实际约 448×560 进模型
+                </Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>生成：</span>贪心，max_new_tokens 2048，沿用自带 generation_config
+                </Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>工程：</span>4 卡分片，原始回答落盘缓存，改解析无需重跑
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '16px 22px', flexDirection: 'column', gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>与论文脚本的差异</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>论文用 ms-swift + vLLM（temperature 0、MAX_PIXELS=262144、max_new_tokens 2048）；我们用 HF generate，参数对齐。</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>各任务问句原文论文未公开，只有 Findings 的示例句和训练时的选项格式 Options:(A)(B) 可查，其余按此重建。</Text>
+                <Text style={{ fontSize: 20, color: '#D9534F', fontWeight: 'bold', lineHeight: 1.5 }}>mAP 的定义论文没写，统一以 mIoU 对标。</Text>
+            </Box>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>03 / 13</Text>
+    </Box>
+</Slide>

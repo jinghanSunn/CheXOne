@@ -1,0 +1,21 @@
+{
+  "config": "runner=official pixels=rec max_new_tokens=2048 prompt=reason views=all",
+  "n": 2347,
+  "n_expected": 2347,
+  "extracted_as": {
+    "boxed_unclosed": 17,
+    "boxed": 2330
+  },
+  "report_words_median": 42,
+  "gt_words_median": 56,
+  "reference": {
+    "source": "ReXRank leaderboard, CheXOne-R1, MIMIC-CXR test",
+    "1/RadCliQ-v1": 1.023,
+    "BLEU": 0.215,
+    "BertScore": 0.441,
+    "SembScore": 0.456,
+    "RadGraph": 0.234,
+    "RaTEScore": 0.519,
+    "GREEN": 0.314
+  }
+}

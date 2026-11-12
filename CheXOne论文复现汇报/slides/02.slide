@@ -1,0 +1,71 @@
+<Slide style={{ width: 1280, height: 720, background: '#F7F9FC', flexDirection: 'column' }}>
+    <Box style={{ height: 80, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>总览：5 个任务，2 个复现，3 个低于论文</Text>
+        <Text style={{ fontSize: 18, color: '#C9D8F0' }}>我们 vs 论文</Text>
+    </Box>
+    <Box style={{ height: 580, padding: '16px 40px', flexDirection: 'column', gap: 14 }}>
+        <Table
+            style={{ width: '100%', height: 396 }}
+            defaultTextStyle={{ fontSize: 20, textAlign: 'center', color: '#1A2230' }}
+            defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+            cells={[
+                [
+                    { text: '任务', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '数据（n：我们 / 论文）', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '指标', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '我们', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '论文', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                    { text: '判断', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+                ],
+                [
+                    { text: 'View 分类', textStyle: { bold: true } },
+                    'MIMIC-CXR test（900 / 900）',
+                    'Accuracy',
+                    { text: '0.988', textStyle: { bold: true, color: '#1E4FA8' } },
+                    '0.998',
+                    { text: '复现：CI 重叠', textStyle: { bold: true, color: '#1E4FA8' } },
+                ],
+                [
+                    { text: 'Findings 生成', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: 'MIMIC-CXR test（2347 / 2347）', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: 'BLEU', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '0.204', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '0.215', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '基本复现：差 0.011', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                ],
+                [
+                    { text: 'Long-tail 诊断', textStyle: { bold: true } },
+                    'CXR-LT test（750 / 750）',
+                    'Accuracy',
+                    { text: '0.757', textStyle: { bold: true, color: '#D9534F' } },
+                    '0.816',
+                    { text: '低于论文 CI', textStyle: { bold: true, color: '#D9534F' } },
+                ],
+                [
+                    { text: 'Phrase grounding', textStyle: { bold: true }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: 'MS-CXR test（176 / 127）', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: 'mIoU', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '0.427', textStyle: { bold: true, color: '#D9534F' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '0.608', cellStyle: { background: { color: '#F0F5FC' } } },
+                    { text: '低；Cardiomegaly 持平', textStyle: { bold: true, color: '#D9534F' }, cellStyle: { background: { color: '#F0F5FC' } } },
+                ],
+                [
+                    { text: 'Abnormality grounding', textStyle: { bold: true } },
+                    'VinDr-CXR test（2108 / 743）',
+                    'mIoU',
+                    { text: '0.250', textStyle: { bold: true, color: '#D9534F' } },
+                    '0.452',
+                    { text: '低：样本构成不同', textStyle: { bold: true, color: '#D9534F' } },
+                ],
+            ]}
+        />
+        <Box style={{ background: '#E8EFF8', borderRadius: 8, padding: '14px 22px', flexDirection: 'column', gap: 6, borderLeft: '6px solid #1E4FA8' }}>
+            <Text style={{ fontSize: 22, color: '#0E3F8C', fontWeight: 'bold' }}>结论：评测链路是对的，剩余差距有可量化的原因</Text>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>两个分类 / 生成类任务已对上论文；三个低于论文的任务中，grounding 的差距来自“测的是哪批样本”和问法，Long-tail 的差距集中在主动脉两类的阴性样本。论文 CI：View [0.978, 1.0]，Long-tail [0.791, 0.842]，VinDr [0.407, 0.513]。</Text>
+        </Box>
+    </Box>
+    <Box style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0px 40px' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>CheXOne 论文复现实验</Text>
+        <Text style={{ fontSize: 16, color: '#1E4FA8', fontWeight: 'bold' }}>02 / 13</Text>
+    </Box>
+</Slide>
